@@ -4,12 +4,13 @@ from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QPixmap, QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow
 from random import randint
+from ui_file import Ui_Form
 
 
-class Example(QMainWindow):
+class Example(QMainWindow, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.draw_btn.clicked.connect(self.paint)
 
@@ -26,7 +27,7 @@ class Example(QMainWindow):
 
     def draw(self, qp):
         rect = QRect(0, 0, randint(50, 500), randint(50, 500))
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         qp.drawEllipse(rect)
 
 
